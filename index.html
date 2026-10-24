@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mijerva</title>
+<meta name="description" content="Small, open-source tools: SoftKVM, EpsonReset and TRCC-LCD.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Ruluko-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>
+  // Applied before the page paints, so a saved theme never flashes.
+  try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+<div class="page">
+  <nav aria-label="Main">
+    <svg class="brand-mark" width="34" height="35" viewBox="0 0 100 104" role="img" aria-label="Mijerva"><g fill="none" stroke="currentColor" stroke-width="19"><path d="M20 88V52a19 19 0 0 1 19-19"/><path d="M50 52v36"/><path d="M61 33a19 19 0 0 1 19 19v34a13 13 0 0 1-13 13h-5"/></g><circle cx="50" cy="18" r="10" fill="var(--accent)"/></svg><span class="wordmark">mijerva</span>
+    <div class="links"><a href="#tools">Tools</a><a href="https://github.com/Mijerva" target="_blank" rel="noopener">GitHub</a><a href="#about">About</a><button type="button" class="theme" id="theme"><svg class="moon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div>
+  </nav>
+
+  <main class="stage" id="tools">
+    <div class="text swap" id="text">
+      <div class="project"><span id="name"></span><span class="state" id="state"></span></div>
+      <h1 id="headline"></h1>
+      <p id="about-text"></p>
+      <p class="note" id="note"></p>
+      <a class="go" id="go" target="_blank" rel="noopener">See it on GitHub</a>
+    </div>
+
+    <div class="gallery" id="gallery" aria-label="Pictures of the tools"></div>
+  </main>
+
+  <footer id="about"><span>Made in Sweden by one person.</span>
+    <div class="controls" aria-label="Gallery">
+      <button type="button" id="prev" aria-label="Previous picture">&#8593;</button>
+      <span class="count" id="count"></span>
+      <button type="button" id="next" aria-label="Next picture">&#8595;</button>
+      <button type="button" id="pause" aria-pressed="false">Pause</button>
+    </div>
+  </footer>
+</div>
+
+<!-- The gallery's pictures, drawn in the page's colours. -->
+<template id="pic-softkvm-desk">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <path class="stroke-acc" d="M260 590H1020"/>
+    <text class="muted" x="640" y="575" font-size="24" text-anchor="middle">Network, encrypted</text>
+    <path class="stroke" d="M350 300v40M690 300v40M970 300v40M330 340h40M670 340h40M950 340h40"/>
+    <rect class="sunk" x="200" y="90" width="300" height="210" rx="10"/>
+    <rect class="stroke" x="200" y="90" width="300" height="210" rx="10"/>
+    <text x="350" y="205" font-size="30" text-anchor="middle">Windows</text>
+    <rect class="acc" x="540" y="90" width="300" height="210" rx="10"/>
+    <text class="on-acc" x="690" y="205" font-size="30" text-anchor="middle">Linux</text>
+    <rect class="acc" x="880" y="170" width="180" height="130" rx="10"/>
+    <text class="on-acc" x="970" y="243" font-size="26" text-anchor="middle">Linux</text>
+    <rect class="sunk" x="430" y="380" width="360" height="56" rx="8"/>
+    <rect class="stroke" x="430" y="380" width="360" height="56" rx="8"/>
+    <path class="stroke" d="M460 408h300"/>
+    <rect class="sunk" x="820" y="378" width="44" height="64" rx="22"/>
+    <rect class="stroke" x="820" y="378" width="44" height="64" rx="22"/>
+    <rect class="sunk" x="120" y="470" width="140" height="190" rx="12"/>
+    <rect class="stroke" x="120" y="470" width="140" height="190" rx="12"/>
+    <rect class="sunk" x="1020" y="470" width="140" height="190" rx="12"/>
+    <rect class="stroke" x="1020" y="470" width="140" height="190" rx="12"/>
+    <text x="190" y="450" font-size="26" text-anchor="middle">Windows PC</text>
+    <text x="1090" y="450" font-size="26" text-anchor="middle">Linux PC</text>
+    <text class="muted" x="640" y="690" font-size="24" text-anchor="middle">Screens, keyboard and mouse stay plugged into the Windows PC.</text>
+  </svg>
+</template>
+
+<template id="pic-softkvm-app">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect class="ground" x="100" y="50" width="1080" height="620" rx="14"/>
+    <rect class="stroke" x="100" y="50" width="1080" height="620" rx="14"/>
+    <rect class="sunk" x="103" y="53" width="1074" height="180" rx="12"/>
+    <text x="140" y="110" font-size="32">Windows PC has the keyboard and mouse</text>
+    <text class="muted" x="140" y="148" font-size="22">Linux PC online</text>
+    <rect class="acc" x="140" y="172" width="270" height="40" rx="20"/>
+    <text class="on-acc" x="275" y="199" font-size="20" text-anchor="middle">Free mouse crossing: on</text>
+    <rect class="ground" x="424" y="172" width="250" height="40" rx="20"/>
+    <text x="549" y="199" font-size="20" text-anchor="middle">Shared clipboard: off</text>
+    <rect class="ink" x="880" y="100" width="260" height="64" rx="8"/>
+    <text class="on-acc" x="1010" y="141" font-size="24" text-anchor="middle">Switch to Linux PC</text>
+    <text class="muted" x="1140" y="194" font-size="18" text-anchor="end">or press Ctrl+Alt+Space</text>
+    <rect class="sunk" x="140" y="260" width="680" height="380" rx="8"/>
+    <text x="164" y="298" font-size="22">Your desk</text>
+    <rect class="ground" x="180" y="400" width="200" height="112" rx="4"/>
+    <text x="194" y="428" font-size="17">Left</text>
+    <text class="muted" x="194" y="500" font-size="15">24.0 in · Windows PC</text>
+    <rect class="ground" x="400" y="370" width="236" height="132" rx="4"/>
+    <text x="414" y="398" font-size="17">Main</text>
+    <text class="muted" x="414" y="490" font-size="15">27.0 in · Windows PC</text>
+    <rect class="ink" x="656" y="440" width="130" height="74" rx="4"/>
+    <rect class="stroke-acc" x="656" y="440" width="130" height="74" rx="4"/>
+    <text class="on-acc" x="666" y="464" font-size="15">Touch</text>
+    <text class="on-acc" x="666" y="504" font-size="14">15.6 in · Linux PC</text>
+    <text x="850" y="290" font-size="28">Touch</text>
+    <text class="muted" x="850" y="318" font-size="17">1920 × 1080 pixels</text>
+    <text x="850" y="366" font-size="19">Shows</text>
+    <rect class="sunk" x="850" y="380" width="290" height="46" rx="6"/>
+    <text x="922" y="410" font-size="17" text-anchor="middle">Windows PC</text>
+    <rect class="ink" x="997" y="384" width="139" height="38" rx="4"/>
+    <text class="on-acc" x="1066" y="410" font-size="17" text-anchor="middle">Linux PC</text>
+    <text x="850" y="468" font-size="19">Size</text>
+    <rect class="sunk" x="850" y="482" width="96" height="46" rx="6"/>
+    <text x="866" y="513" font-size="20">15.6</text>
+    <text class="muted" x="958" y="512" font-size="18">inches</text>
+    <text x="850" y="570" font-size="19">Apps that open here</text>
+    <rect class="ink" x="850" y="584" width="120" height="36" rx="18"/>
+    <text class="on-acc" x="900" y="608" font-size="17" text-anchor="middle">Browser ×</text>
+  </svg>
+</template>
+
+<template id="pic-epson-flow">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <g transform="translate(230 300)">
+      <rect class="sunk" x="-130" y="-104" width="260" height="56" rx="10"/>
+      <rect class="sunk" x="-150" y="-60" width="300" height="160" rx="18"/>
+      <rect class="stroke" x="-150" y="-60" width="300" height="160" rx="18"/>
+      <rect class="stroke" x="-130" y="-104" width="260" height="44" rx="10"/>
+      <rect class="ink" x="20" y="-28" width="100" height="56" rx="6"/>
+      <text class="on-acc" x="70" y="12" font-size="30" text-anchor="middle">E-11</text>
+      <path class="stroke" d="M-110 60h160"/>
+    </g>
+    <path class="stroke-acc" d="M415 300h70m-22 -22l22 22l-22 22"/>
+    <g transform="translate(640 300)">
+      <rect class="sunk" x="-130" y="-110" width="260" height="210" rx="12"/>
+      <rect class="stroke" x="-130" y="-110" width="260" height="210" rx="12"/>
+      <text x="-108" y="-68" font-size="26">EpsonReset</text>
+      <text class="muted" x="-108" y="-22" font-size="22">Waste ink counter: full</text>
+      <rect class="acc" x="-108" y="18" width="216" height="58" rx="8"/>
+      <text class="on-acc" x="0" y="56" font-size="24" text-anchor="middle">Reset E-11 error</text>
+    </g>
+    <path class="stroke-acc" d="M795 300h70m-22 -22l22 22l-22 22"/>
+    <g transform="translate(1050 300)">
+      <rect class="ground" x="-80" y="-190" width="160" height="110" rx="4"/>
+      <rect class="stroke" x="-80" y="-190" width="160" height="110" rx="4"/>
+      <path class="stroke" d="M-50 -160h100M-50 -134h70"/>
+      <rect class="sunk" x="-130" y="-104" width="260" height="56" rx="10"/>
+      <rect class="sunk" x="-150" y="-60" width="300" height="160" rx="18"/>
+      <rect class="stroke" x="-150" y="-60" width="300" height="160" rx="18"/>
+      <rect class="stroke" x="-130" y="-104" width="260" height="44" rx="10"/>
+      <rect class="acc" x="20" y="-28" width="100" height="56" rx="6"/>
+      <text class="on-acc" x="70" y="10" font-size="26" text-anchor="middle">Ready</text>
+      <path class="stroke" d="M-110 60h160"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="230" y="470" font-size="34">Printer stops</text>
+      <text class="muted" x="230" y="510" font-size="24">E-11: ink pads full</text>
+      <text x="640" y="470" font-size="34">EpsonReset</text>
+      <text class="muted" x="640" y="510" font-size="24">resets the counter over USB</text>
+      <text x="1050" y="470" font-size="34">Prints again</text>
+      <text class="muted" x="1050" y="510" font-size="24">after a restart</text>
+      <text class="muted" x="640" y="640" font-size="24">Empty or replace the ink pads first. Resetting the counter does not do that.</text>
+    </g>
+  </svg>
+</template>
+
+<template id="pic-epson-app">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect class="sunk" x="200" y="80" width="880" height="560" rx="14"/>
+    <rect class="stroke" x="200" y="80" width="880" height="560" rx="14"/>
+    <text x="244" y="138" font-size="30">EpsonReset</text>
+    <text class="muted" x="244" y="226" font-size="24">Printer</text>
+    <text x="244" y="266" font-size="32">ET-2870 series, connected over USB</text>
+    <text class="muted" x="244" y="340" font-size="24">Waste ink counter</text>
+    <text x="244" y="380" font-size="32">Full: error E-11</text>
+    <text class="muted" x="244" y="454" font-size="24">Counter values are saved to a backup file before a reset.</text>
+    <rect class="ground" x="244" y="520" width="250" height="68" rx="8"/>
+    <text x="369" y="563" font-size="24" text-anchor="middle">Read printer status</text>
+    <rect class="acc" x="514" y="520" width="250" height="68" rx="8"/>
+    <text class="on-acc" x="639" y="563" font-size="24" text-anchor="middle">Reset E-11 error</text>
+    <rect class="ground" x="784" y="520" width="250" height="68" rx="8"/>
+    <text x="909" y="563" font-size="24" text-anchor="middle">Check again</text>
+  </svg>
+</template>
+
+<template id="pic-trcc-stats">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <text x="80" y="104" font-size="38">While your picture is shown</text>
+    <g font-size="26">
+      <text x="80" y="200">Memory</text>
+      <rect class="acc" x="300" y="174" width="10" height="34" rx="4"/>
+      <text x="324" y="200">TRCC-LCD: 2 MB</text>
+      <rect class="muted" x="300" y="220" width="880" height="34" rx="4"/>
+      <text class="on-acc" x="320" y="246">Vendor app: 180 MB</text>
+
+      <text x="80" y="350">CPU</text>
+      <rect class="acc" x="300" y="324" width="20" height="34" rx="4"/>
+      <text x="334" y="350">TRCC-LCD: 0.1 %</text>
+      <rect class="muted" x="300" y="370" width="600" height="34" rx="4"/>
+      <text class="on-acc" x="320" y="396">Vendor app: 3 %</text>
+
+      <text x="80" y="500">Install size</text>
+      <rect class="acc" x="300" y="474" width="24" height="34" rx="4"/>
+      <text x="338" y="500">TRCC-LCD: 3 MB</text>
+      <rect class="muted" x="300" y="520" width="840" height="34" rx="4"/>
+      <text class="on-acc" x="320" y="546">Vendor app: 120 MB</text>
+    </g>
+    <text class="muted" x="80" y="660" font-size="30">Illustrative numbers, not measured yet.</text>
+  </svg>
+</template>
+
+<template id="pic-trcc-cooler">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <path class="stroke" d="M600 250C690 250 700 110 800 96M600 330C730 330 760 170 880 150" style="stroke-width:28"/>
+    <rect class="ink" x="240" y="180" width="360" height="360" rx="48"/>
+    <rect class="acc" x="270" y="210" width="300" height="300" rx="24"/>
+    <g transform="translate(345 282) scale(1.5)" fill="none" stroke="var(--ground)" stroke-width="16" stroke-linecap="round">
+      <path d="M20 88V52a19 19 0 0 1 19-19"/><path d="M50 52v36"/><path d="M61 33a19 19 0 0 1 19 19v34a13 13 0 0 1-13 13h-5"/>
+    </g>
+    <circle cx="420" cy="309" r="15" fill="var(--ground)"/>
+    <text x="760" y="440" font-size="38">480 × 480 screen</text>
+    <text class="muted" x="760" y="490" font-size="28">Any picture or animated GIF,</text>
+    <text class="muted" x="760" y="530" font-size="28">fitted and rotated for you.</text>
+  </svg>
+</template>
+
+<script src="site.js"></script>
+</body>
+</html>
