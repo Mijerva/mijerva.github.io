@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mijerva</title>
-<meta name="description" content="Small, open-source tools: SoftKVM, EpsonReset and TRCC-LCD.">
+<meta name="description" content="Small tools for Windows and Linux: SoftKVM, EpsonReset, TRCC-LCD, DeadLockMedic and JobbHunter.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/Ruluko-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -215,6 +215,153 @@
     <text x="760" y="440" font-size="38">480 × 480 screen</text>
     <text class="muted" x="760" y="490" font-size="28">Any picture or animated GIF,</text>
     <text class="muted" x="760" y="530" font-size="28">fitted and rotated for you.</text>
+  </svg>
+</template>
+
+<template id="pic-deadlock-cards">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect class="sunk" x="160" y="90" width="280" height="370" rx="14"/>
+    <rect class="stroke-acc" x="160" y="90" width="280" height="370" rx="14" style="stroke-width:10"/>
+    <rect class="sunk" x="500" y="90" width="280" height="370" rx="14"/>
+    <rect class="stroke" x="500" y="90" width="280" height="370" rx="14"/>
+    <rect class="sunk" x="840" y="90" width="280" height="370" rx="14"/>
+    <rect class="stroke" x="840" y="90" width="280" height="370" rx="14"/>
+    <circle class="acc" cx="300" cy="230" r="70"/>
+    <circle class="stroke" cx="640" cy="230" r="70"/>
+    <circle class="stroke" cx="980" cy="230" r="70"/>
+    <g text-anchor="middle">
+      <text x="300" y="370" font-size="28">Spirit card</text>
+      <text x="640" y="370" font-size="28">Weapon card</text>
+      <text x="980" y="370" font-size="28">Vitality card</text>
+      <text class="muted" x="300" y="410" font-size="20">1,240 picks</text>
+      <text class="muted" x="640" y="410" font-size="20">2,310 picks</text>
+      <text class="muted" x="980" y="410" font-size="20">860 picks</text>
+    </g>
+    <rect class="acc" x="200" y="500" width="200" height="72" rx="10"/>
+    <rect class="ink" x="540" y="500" width="200" height="72" rx="10"/>
+    <rect class="ink" x="880" y="500" width="200" height="72" rx="10"/>
+    <g text-anchor="middle">
+      <text class="on-acc" x="300" y="548" font-size="32">S · 57.8 %</text>
+      <text class="on-acc" x="640" y="548" font-size="32">D · 47.9 %</text>
+      <text class="on-acc" x="980" y="548" font-size="32">F · 44.1 %</text>
+      <text class="muted" x="640" y="660" font-size="24">Sample numbers. The cards are drawn for this picture.</text>
+    </g>
+  </svg>
+</template>
+
+<template id="pic-deadlock-flow">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <g transform="translate(230 260)">
+      <rect class="sunk" x="-150" y="-100" width="300" height="190" rx="10"/>
+      <rect class="stroke" x="-150" y="-100" width="300" height="190" rx="10"/>
+      <rect class="ink" x="-120" y="-70" width="240" height="130" rx="4"/>
+      <rect class="acc" x="-96" y="0" width="56" height="40" rx="4"/>
+      <rect class="acc" x="-28" y="0" width="56" height="40" rx="4"/>
+      <rect class="acc" x="40" y="0" width="56" height="40" rx="4"/>
+      <path class="stroke" d="M-40 90v30M40 90v30M-70 120h140"/>
+    </g>
+    <path class="stroke-acc" d="M415 260h70m-22 -22l22 22l-22 22"/>
+    <g transform="translate(640 260)">
+      <rect class="acc" x="-130" y="-100" width="260" height="190" rx="12"/>
+      <text class="on-acc" x="0" y="-12" font-size="32" text-anchor="middle">DeadLockMedic</text>
+      <text class="on-acc" x="0" y="34" font-size="22" text-anchor="middle">compares small pictures</text>
+    </g>
+    <path class="stroke-acc" d="M795 260h70m-22 -22l22 22l-22 22"/>
+    <g transform="translate(1050 260)">
+      <rect class="sunk" x="-150" y="-100" width="300" height="190" rx="10"/>
+      <rect class="stroke" x="-150" y="-100" width="300" height="190" rx="10"/>
+      <rect class="ground" x="-110" y="-70" width="220" height="56" rx="6"/>
+      <rect class="stroke-acc" x="-110" y="-70" width="220" height="56" rx="6"/>
+      <text x="0" y="-33" font-size="22" text-anchor="middle">S · D · F</text>
+      <path class="stroke" d="M-110 20h220M-110 50h150" style="stroke-width:4"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="230" y="430" font-size="32">Deadlock window</text>
+      <text class="muted" x="230" y="468" font-size="22">only the small areas it needs</text>
+      <text x="640" y="430" font-size="32">Recognition</text>
+      <text class="muted" x="640" y="468" font-size="22">no OCR, no game memory</text>
+      <text x="1050" y="430" font-size="32">Overlay</text>
+      <text class="muted" x="1050" y="468" font-size="22">a separate click-through window</text>
+      <text x="640" y="580" font-size="28">In the background: 0.016 % of one core, 8.5 MB of memory</text>
+      <text class="muted" x="640" y="640" font-size="24">Never injects code, sends input or uploads anything.</text>
+    </g>
+  </svg>
+</template>
+
+<template id="pic-jobb-app">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect class="ground" x="100" y="50" width="1080" height="620" rx="14"/>
+    <rect class="stroke" x="100" y="50" width="1080" height="620" rx="14"/>
+    <text x="140" y="112" font-size="32">Jobs</text>
+    <text class="muted" x="230" y="112" font-size="20">412 jobs · suitable first</text>
+    <rect class="ink" x="900" y="78" width="240" height="50" rx="8"/>
+    <text class="on-acc" x="1020" y="111" font-size="22" text-anchor="middle">Refresh jobs</text>
+    <rect class="sunk" x="140" y="160" width="420" height="110" rx="8"/>
+    <rect class="stroke-acc" x="140" y="160" width="420" height="110" rx="8" style="stroke-width:4"/>
+    <text x="164" y="204" font-size="24">Embedded developer</text>
+    <text class="muted" x="164" y="240" font-size="18">Lund · JobTech</text>
+    <rect class="acc" x="452" y="186" width="84" height="40" rx="20"/>
+    <text class="on-acc" x="494" y="213" font-size="20" text-anchor="middle">86 %</text>
+    <rect class="sunk" x="140" y="290" width="420" height="110" rx="8"/>
+    <text x="164" y="334" font-size="24">Software engineer</text>
+    <text class="muted" x="164" y="370" font-size="18">Malmö · Greenhouse</text>
+    <rect class="ground" x="452" y="316" width="84" height="40" rx="20"/>
+    <text x="494" y="343" font-size="20" text-anchor="middle">71 %</text>
+    <rect class="sunk" x="140" y="420" width="420" height="110" rx="8"/>
+    <text x="164" y="464" font-size="24">Test engineer, HMI</text>
+    <text class="muted" x="164" y="500" font-size="18">Helsingborg · career page</text>
+    <rect class="ground" x="436" y="446" width="100" height="40" rx="20"/>
+    <text x="486" y="473" font-size="20" text-anchor="middle">Review</text>
+    <text class="muted" x="140" y="600" font-size="18">Saved 4 · Applied 2 · Dismissed 9</text>
+    <rect class="sunk" x="600" y="160" width="540" height="470" rx="8"/>
+    <text x="630" y="204" font-size="26">Embedded developer</text>
+    <text class="muted" x="630" y="238" font-size="19">Confirmed match 86 % · 2 of 3 known</text>
+    <path class="stroke-acc" d="M636 290l10 10l18 -20M636 350l10 10l18 -20" style="stroke-width:5"/>
+    <text x="684" y="300" font-size="20">C++ <tspan class="muted">· mandatory</tspan></text>
+    <text x="684" y="360" font-size="20">3 years embedded work <tspan class="muted">· mandatory</tspan></text>
+    <text class="muted" x="642" y="420" font-size="24" text-anchor="middle">?</text>
+    <text x="684" y="420" font-size="20">Yocto <tspan class="muted">· preferred</tspan></text>
+    <rect class="ground" x="684" y="436" width="140" height="36" rx="18"/>
+    <text x="754" y="460" font-size="17" text-anchor="middle">I have this</text>
+    <rect class="ink" x="630" y="560" width="120" height="46" rx="8"/>
+    <text class="on-acc" x="690" y="590" font-size="20" text-anchor="middle">Save</text>
+    <rect class="ground" x="764" y="560" width="160" height="46" rx="8"/>
+    <text x="844" y="590" font-size="20" text-anchor="middle">Open the ad</text>
+  </svg>
+</template>
+
+<template id="pic-jobb-match">
+  <svg class="pic" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <text x="80" y="104" font-size="38">How a match is scored</text>
+    <rect class="sunk" x="80" y="150" width="340" height="380" rx="12"/>
+    <rect class="stroke" x="80" y="150" width="340" height="380" rx="12"/>
+    <text class="muted" x="108" y="196" font-size="22">The ad</text>
+    <path class="stroke" d="M108 236h284M108 270h220" style="stroke-width:4"/>
+    <rect class="acc" x="104" y="296" width="250" height="34" rx="4"/>
+    <text class="on-acc" x="116" y="320" font-size="20">Vi söker dig som kan C++</text>
+    <rect class="acc" x="104" y="344" width="292" height="34" rx="4"/>
+    <text class="on-acc" x="116" y="368" font-size="20">minst 3 års erfarenhet av ...</text>
+    <rect class="ground" x="104" y="392" width="200" height="34" rx="4"/>
+    <text x="116" y="416" font-size="20">Meriterande: Yocto</text>
+    <path class="stroke" d="M108 468h260M108 500h180" style="stroke-width:4"/>
+    <path class="stroke-acc" d="M445 340h60m-22 -22l22 22l-22 22"/>
+    <g font-size="22">
+      <rect class="sunk" x="530" y="200" width="420" height="70" rx="8"/>
+      <text x="554" y="244">C++ · mandatory, counts 3</text>
+      <path class="stroke-acc" d="M906 230l10 10l18 -20" style="stroke-width:5"/>
+      <rect class="sunk" x="530" y="300" width="420" height="70" rx="8"/>
+      <text x="554" y="344">3 years · mandatory, counts 3</text>
+      <path class="stroke-acc" d="M906 330l10 10l18 -20" style="stroke-width:5"/>
+      <rect class="sunk" x="530" y="400" width="420" height="70" rx="8"/>
+      <text x="554" y="444">Yocto · preferred, counts 1</text>
+      <text class="muted" x="920" y="446" font-size="28" text-anchor="middle">?</text>
+    </g>
+    <path class="stroke-acc" d="M975 340h60m-22 -22l22 22l-22 22"/>
+    <g text-anchor="middle">
+      <text x="1130" y="330" font-size="76">86 %</text>
+      <text class="muted" x="1130" y="374" font-size="22">6 of 7 confirmed</text>
+      <text class="muted" x="640" y="620" font-size="24">Unknown earns nothing. A confirmed mandatory gap rules a job out whatever the percentage.</text>
+    </g>
   </svg>
 </template>
 
