@@ -20,6 +20,18 @@
       headline: "Your own pictures on your cooler's screen.",
       about: "For the LCD on Thermalright AIO coolers, without the vendor software. A tray app keeps your picture or GIF on the screen using about 2 MB of memory. Tested on one 480 × 480 model so far.",
       note: "Not made by or affiliated with Thermalright. The comparison numbers in the pictures are illustrative, not measured yet."
+    },
+    deadlock: {
+      name: "DeadLockMedic", state: "In development", repo: "https://github.com/Mijerva",
+      headline: "A grade on every card, while you pick.",
+      about: "An overlay for Deadlock on Windows. In Street Brawl it grades each offered card from S to F for your hero, from recorded matches. It also shows the skill order, imbue pick shares and your next build item. It reads screen pixels only, never game memory, and uploads nothing.",
+      note: "Not released yet. Not made by or affiliated with Valve."
+    },
+    jobb: {
+      name: "JobbHunter", state: "In development", repo: "https://github.com/Mijerva",
+      headline: "Swedish job ads, checked against what you can do.",
+      about: "A Windows app that collects real Swedish job ads and compares each requirement with the skills and experience you enter. It shows which requirements you meet, which need a check, and why. Your profile and the ads stay in a database on your PC.",
+      note: "Not released yet. The match scores are still being checked by hand against real ads."
     }
   };
   // Pictures of the same project sit together, so the text only changes when
@@ -37,7 +49,15 @@
     { p: "trcc", pic: "pic-trcc-stats", cap: "Resources while it runs",
       desc: "Illustrative numbers, not measured yet: TRCC-LCD uses 2 MB of memory, 0.1 % CPU and 3 MB on disk, against 180 MB, 3 % and 120 MB for the vendor app." },
     { p: "trcc", pic: "pic-trcc-cooler", cap: "Your picture on the cooler",
-      desc: "A cooler's 480 by 480 screen showing your own picture. Any picture or animated GIF is fitted and rotated for you." }
+      desc: "A cooler's 480 by 480 screen showing your own picture. Any picture or animated GIF is fitted and rotated for you." },
+    { p: "deadlock", pic: "pic-deadlock-cards", cap: "Card grades",
+      desc: "Sample numbers. Three offered cards, each with a tag below it: the first gets an S with a 57.8 % win rate and is highlighted, the second a D with 47.9 %, the third an F with 44.1 %." },
+    { p: "deadlock", pic: "pic-deadlock-flow", cap: "What it reads",
+      desc: "DeadLockMedic reads pixels from the Deadlock window and draws a separate click-through overlay. It never reads game memory, injects code, sends input or uploads anything. In the background it uses 0.016 % of one CPU core and 8.5 MB of memory." },
+    { p: "jobb", pic: "pic-jobb-app", cap: "The app",
+      desc: "The JobbHunter window: a list of jobs with match percentages, and the selected job's requirements, each marked as met or needing a check, with a confirmed match of 86 %." },
+    { p: "jobb", pic: "pic-jobb-match", cap: "How a match is scored",
+      desc: "An ad's requirements are compared with your qualifications. Two mandatory requirements are met and one preferred requirement is unknown, which gives a confirmed match of 86 %. A confirmed mandatory gap rules a job out whatever the percentage." }
   ];
   const INTERVAL = 5200;
   const $ = id => document.getElementById(id);
